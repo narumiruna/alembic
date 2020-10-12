@@ -157,6 +157,10 @@ IF (Boost_PYTHON_LIBRARY AND ALEMBIC_PYTHON_LIBRARY)
     set_target_properties(PyAlembic PROPERTIES
         INSTALL_RPATH_USE_LINK_PATH TRUE
         INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
+
+    IF (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=default")
+    ENDIF()
 ELSE()
     MESSAGE(FATAL_ERROR "Unable to find Python libs")
 ENDIF()
